@@ -37,7 +37,7 @@ object CartExperiments {
 
     // sample
 
-    import com.juniqe.model.dto.GermanStore
+    import model.dto.GermanStore
 
     def cartItem[ST <: Store](id: Int): CartItemWithQuantity[ST] = new CartItemWithQuantity[ST] {
       override def quantity: Quantity = Quantity(2)

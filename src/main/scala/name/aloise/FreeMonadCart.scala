@@ -5,13 +5,13 @@ object CartExperiments {
   // Experimental ADT - representing Cart as Free Monad
   sealed trait CartOperationA[A]
 
-  case class AddCartItem[ST <: Store, C <: CartItemWithQuantity[ST]](item: C) extends CartOperationA[C] // add a particular quantity of items to the cart
-  case class RemoveCartItem[ST <: Store, C <: CartItemWithQuantity[ST]](itemToRemove: C) extends CartOperationA[C] // removes a particular quantity from the cart. Might remove the whole position
-  case class AddCouponCode(coupon: CouponCodeString) extends CartOperationA[CouponCodeString]
+  final case class AddCartItem[ST <: Store, C <: CartItemWithQuantity[ST]](item: C) extends CartOperationA[C] // add a particular quantity of items to the cart
+  final case class RemoveCartItem[ST <: Store, C <: CartItemWithQuantity[ST]](itemToRemove: C) extends CartOperationA[C] // removes a particular quantity from the cart. Might remove the whole position
+  final case class AddCouponCode(coupon: CouponCodeString) extends CartOperationA[CouponCodeString]
 
   case object RemoveCouponCode extends CartOperationA[Unit]
 
-  case class SetShippingCountry(country: CountryCode) extends CartOperationA[CountryCode] // store default initially
+  final case class SetShippingCountry(country: CountryCode) extends CartOperationA[CountryCode] // store default initially
 
   type CartOperation[A] = Free[CartOperationA, A]
 
